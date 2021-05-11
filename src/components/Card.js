@@ -1,4 +1,5 @@
 import '../styles/card.css'
+import '../styles/style.css'
 import React from 'react'
 import ProductCard from './Product/ProductCard'
 import CartCard from './Cart/CartCard'
@@ -9,8 +10,7 @@ import { useProduct } from '../context/product-context'
 
 const Card = ({ details }) => {
 
-    const { _id, name, image, price, inStock, fastDelivery, productName }
-        = details
+    const { _id, name, image, price, inStock, fastDelivery, productName } = details
     const { dispatch } = useProduct()
     const navigate = useNavigate()
 
