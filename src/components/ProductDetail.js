@@ -1,18 +1,17 @@
 import React from 'react'
 // import { useParams } from 'react-router'
-import { useProduct } from '../../context/product-context'
-import { Link } from 'react-router-dom'
+import { useProduct } from '../context/product-context'
 
-import "../../styles/productdetail.css";
-import ProductCard from './ProductCard';
+
+import "../styles/productdetail.css";
+import ProductCardAction from './Product/ProductCardAction';
 
 
 const ProductDetail = () => {
 
     const { productDetail } = useProduct()
-    const { cart, wishlist, dispatch } = useProduct()
 
-    const { _id, name, image, fastDelivery, inStock, productName, price }
+    const { name, image, fastDelivery, inStock, price }
         = productDetail
 
     return (
@@ -27,7 +26,7 @@ const ProductDetail = () => {
                     {fastDelivery && <span className="product-delivery">Fast Delivery</span>}
                 </div>
                 <h4>Price: ${price}</h4>
-                <ProductCard details={productDetail} />
+                <ProductCardAction details={productDetail} />
             </div>
         </div>
 

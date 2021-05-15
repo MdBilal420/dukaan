@@ -1,8 +1,7 @@
 import React from 'react'
 import { useProduct } from '../context/product-context'
-import Card from './Card'
 import '../styles/style.css'
-
+import WishListCard from './WishList/WishListCard'
 
 
 const emptyStyle = {
@@ -25,7 +24,7 @@ const Wishlist = () => {
                 {
                     wishlist.length === 0 ? <div style={emptyStyle}>Wishlist is Empty</div> :
                         wishlist.map((item) => (
-                            <Card details={item} key={item._id} />
+                            <WishListCard details={item} key={item._id} />
                         ))
                 }
 

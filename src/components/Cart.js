@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useProduct } from '../context/product-context'
-import Card from './Card'
+// import Card from './Card'
 import '../styles/style.css'
-
-
+import CartCard from './Cart/CartCard'
 
 const emptyStyle = {
     textAlign: "center",
@@ -40,7 +39,7 @@ const Cart = () => {
                 {
                     cart.length === 0 ? <div style={emptyStyle}>Cart is Empty</div> :
                         cart.map((item) => (
-                            <Card details={item} key={item._id} />
+                            <CartCard details={item} key={item._id} />
                         ))
                 }
 

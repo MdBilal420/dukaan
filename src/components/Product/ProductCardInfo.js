@@ -3,13 +3,12 @@ import '../../styles/style.css'
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useProduct } from '../../context/product-context'
-import WishListCardAction from './WishListCardAction';
 
 
+const ProductCardInfo = ({ details }) => {
 
-const WishListCard = ({ details }) => {
+    const { _id, image, inStock, fastDelivery, productName } = details
 
-    const { _id, name, image, price, inStock, fastDelivery, productName } = details
     const { dispatch } = useProduct()
     const navigate = useNavigate()
 
@@ -24,11 +23,7 @@ const WishListCard = ({ details }) => {
 
 
     return (
-
-        <div
-            key={_id}
-            className="column"
-        >
+        <div>
             <div className="product-tumb" onClick={() => selectProduct(_id)}>
                 <img src={image} alt={productName} />
             </div>
@@ -46,15 +41,8 @@ const WishListCard = ({ details }) => {
                     <span> 3 days minimum </span>
                 }
             </div>
-
-            <div className="product-details">
-                <h4 onClick={() => selectProduct(_id)}> {name} </h4>
-                <div className="product-price">${price}</div>
-                <WishListCardAction details={details} />
-            </div>
         </div>
     )
 }
 
-
-export default WishListCard;
+export default ProductCardInfo

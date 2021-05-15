@@ -1,6 +1,6 @@
 import React from 'react'
-import Card from '../Card';
 import '../../styles/card.css'
+import ProductCard from './ProductCard';
 
 
 const ProductList = ({ productList }) => {
@@ -10,7 +10,7 @@ const ProductList = ({ productList }) => {
             <div className="row">
                 {productList.map(
                     (item) => (
-                        <Card details={item} key={item._id} />
+                        <ProductCard details={item} key={item._id} />
                     )
                 )}
             </div>

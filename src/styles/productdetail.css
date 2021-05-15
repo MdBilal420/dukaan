@@ -28,7 +28,16 @@
     width: 100%;
     height: auto;
 }
+/* .product-tumb{
+    margin-bottom: 1px;
+} */
+.product-details h4{
+    margin-top: 0px;
+}
 
+.product-price{
+    margin-top: -10px;
+}
 .product-view img{
     max-width: 360px;
     width: 100%;

@@ -1,42 +1,44 @@
-import React from 'react'
 import '../../styles/card.css'
-import { useProduct } from '../../context/product-context';
-import { Link } from 'react-router-dom'
-import DeleteFromWishlist from '../WishList/DeleteFromWishlist';
-import AddToWishlist from '../WishList/AddToWishlist';
-import AddToCart from '../Cart/AddToCart';
-import OutOfStock from '../OutOfStock';
+import '../../styles/style.css'
+import React from 'react'
+import ProductCardAction from './ProductCardAction'
+import { useNavigate } from "react-router-dom";
+import { useProduct } from '../../context/product-context'
+import ProductCardInfo from './ProductCardInfo';
 
 
-const ProductCard = ({ details }) => {
+const ProductCardDetails = ({ details }) => {
 
-    const { _id, inStock } = details
+    const { _id, name, price } = details
 
-    const { cart, wishlist } = useProduct()
+    const { dispatch } = useProduct()
+    const navigate = useNavigate()
 
+    const selectProduct = (id) => {
+        if (id) {
+            dispatch({ type: "SELECT_PRODUCT", payload: details })
+            navigate(`/product/${id}`)
+        } else {
+            navigate(`title`)
+        }
+    }
 
     return (
-        <div className="product-links-cart">
-            {
-                wishlist.find((item) => item._id === _id) ?
-                    <DeleteFromWishlist details={details} />
-                    :
-                    <AddToWishlist details={details} />
-            }
+        <div
+            key={_id}
+            className="column"
+        >
+            <ProductCardInfo details={details} />
 
-            {
-                cart.find((item) => item._id === _id) ?
-                    <Link to="/cart" className="button-link">
-                        Go To Cart
-                    </Link>
-                    :
-                    inStock ?
-                        <AddToCart details={details} />
-                        :
-                        <OutOfStock />
-            }
-        </div>
+            <div className="product-details">
+                <h4 onClick={() => selectProduct(_id)}> {name} </h4>
+                <div className="product-price">${price}</div>
+                <ProductCardAction details={details} />
+            </div>
+
+
+        </div >
     )
 }
 
-export default ProductCard;
+export default ProductCardDetails

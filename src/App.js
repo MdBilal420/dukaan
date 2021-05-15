@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 // import Login from "./components/Auth/Login";
-import SignUp from "./components/Auth/SignUp";
+// import SignUp from "./components/Auth/SignUp";
 import Cart from "./components/Cart";
 import NavBar from "./components/Header/NavBar";
 import Product from "./components/Product";
-import ProductDetail from "./components/Product/ProductDetail";
+import ProductDetail from "./components/ProductDetail";
 import Wishlist from "./components/Wishlist";
 import "./styles.css";
 
@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/register" element={<SignUp />} />
+        {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/product/:productId" element={<ProductDetail />} />
         {/* <Route path="login" element={<Login />} /> */}
       </Routes>
