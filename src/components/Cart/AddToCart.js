@@ -1,19 +1,13 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context';
+import useProduct from '../hooks/useProduct';
 
 const AddToCart = ({ details }) => {
 
-    const { _id, name, image, fastDelivery, inStock, productName, price }
-        = details
-
-    const { dispatch } = useProduct()
+    const { addToCart } = useProduct()
 
     return (
         <span className="button-link"
-            onClick={() => dispatch({
-                type: "ADD_TO_CART",
-                payload: { _id, name, image, fastDelivery, inStock, productName, quantity: 1, price }
-            })}>
+            onClick={() => addToCart(details)}>
             Add To Cart
         </span>
     )

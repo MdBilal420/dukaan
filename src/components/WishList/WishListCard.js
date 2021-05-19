@@ -2,55 +2,29 @@ import '../../styles/card.css'
 import '../../styles/style.css'
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { useProduct } from '../../context/product-context'
 import WishListCardAction from './WishListCardAction';
+import WishListCardInfo from './WishListCardInfo';
 
 
 
 const WishListCard = ({ details }) => {
 
-    const { _id, name, image, price, inStock, fastDelivery, productName } = details
-    const { dispatch } = useProduct()
+    const { _id, name, price } = details.product
+
     const navigate = useNavigate()
-
-    const selectProduct = (id) => {
-        if (id) {
-            dispatch({ type: "SELECT_PRODUCT", payload: details })
-            navigate(`/product/${id}`)
-        } else {
-            navigate(`title`)
-        }
-    }
-
 
     return (
 
-        <div
-            key={_id}
-            className="column"
-        >
-            <div className="product-tumb" onClick={() => selectProduct(_id)}>
-                <img src={image} alt={productName} />
-            </div>
+        <div className="column">
 
-            <div className="badge"
-                onClick={() => selectProduct(_id)}
-                style={inStock ? { backgroundColor: "#3a87ad" } : { backgroundColor: "#b94a48" }}>
-                {inStock ? <span> In Stock </span> : <span> Out of Stock </span>}
-            </div>
-            <br />
-            <div className="badge" style={fastDelivery ? { backgroundColor: "#468847", top: "40px" } : { backgroundColor: "#b94a48", top: "40px" }}>
-                {fastDelivery ?
-                    <span> Fast Delivery </span>
-                    :
-                    <span> 3 days minimum </span>
-                }
-            </div>
+            <WishListCardInfo details={details.product} onClick={() => navigate(`/product/${_id}`)} />
 
             <div className="product-details">
-                <h4 onClick={() => selectProduct(_id)}> {name} </h4>
-                <div className="product-price">${price}</div>
-                <WishListCardAction details={details} />
+                <span onClick={() => navigate(`/product/${_id}`)}>
+                    <h4> {name} </h4>
+                    <div className="product-price">${price}</div>
+                </span>
+                <WishListCardAction details={details.product} />
             </div>
         </div>
     )

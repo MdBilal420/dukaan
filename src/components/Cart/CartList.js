@@ -1,13 +1,13 @@
 import React from 'react';
 // import Card from '../Card';
 import '../../styles/card.css';
-import { useProduct } from '../../context/product-context';
+import { useData } from '../../context/product-context';
 import CartCard from './CartCard';
 
 
 const CartList = () => {
 
-    const { cartList } = useProduct()
+    const { cartList } = useData()
 
 
     return (

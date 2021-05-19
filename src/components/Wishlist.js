@@ -1,5 +1,6 @@
+//import axios from 'axios'
 import React from 'react'
-import { useProduct } from '../context/product-context'
+import { useData } from '../context/product-context'
 import '../styles/style.css'
 import WishListCard from './WishList/WishListCard'
 
@@ -7,23 +8,19 @@ import WishListCard from './WishList/WishListCard'
 const emptyStyle = {
     textAlign: "center",
     fontSize: "5rem",
-
 }
 
 const Wishlist = () => {
 
-    const { wishlist } = useProduct()
-    console.log(wishlist)
+    const { state } = useData()
+
     return (
         <>
-
             <h1 style={{ textAlign: "center" }}>Wishlist</h1>
-
             <div className="row">
-
                 {
-                    wishlist.length === 0 ? <div style={emptyStyle}>Wishlist is Empty</div> :
-                        wishlist.map((item) => (
+                    state.wishlist.length === 0 ? <div style={emptyStyle}>Wishlist is Empty</div> :
+                        state.wishlist.map((item) => (
                             <WishListCard details={item} key={item._id} />
                         ))
                 }

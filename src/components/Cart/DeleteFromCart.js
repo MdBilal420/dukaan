@@ -1,17 +1,18 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 
 const DeleteFromCart = ({ details }) => {
 
-    const { _id, name, image, fastDelivery, productName }
-        = details
+    const { _id } = details.product
 
-    const { dispatch } = useProduct()
+    console.log(details.product)
+
+    const { deleteFromCart } = useData()
 
     return (
         <span
             className="material-icons"
-            onClick={() => dispatch({ type: "DELETE_ITEM_FROM_CART", payload: { _id, name, image, fastDelivery, productName } })}>
+            onClick={() => deleteFromCart(_id)}>
             remove_shopping_cart
         </span>
     )

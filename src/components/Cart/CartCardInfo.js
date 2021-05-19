@@ -2,14 +2,15 @@ import '../../styles/card.css'
 import '../../styles/style.css'
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 
 const CartCardInfo = ({ details }) => {
 
-    const { _id, image, inStock, fastDelivery, productName } = details
+    const { _id, inStock, fastDelivery } = details
 
-    const { dispatch } = useProduct()
+    const { dispatch } = useData()
     const navigate = useNavigate()
+    console.log(details)
 
     const selectProduct = (id) => {
         if (id) {
@@ -20,11 +21,10 @@ const CartCardInfo = ({ details }) => {
         }
     }
 
-
     return (
-        <div>
+        <>
             <div className="product-tumb" onClick={() => selectProduct(_id)}>
-                <img src={image} alt={productName} />
+                <img src={details.image} alt={details.name} />
             </div>
 
             <div className="badge"
@@ -40,7 +40,7 @@ const CartCardInfo = ({ details }) => {
                     <span> 3 days minimum </span>
                 }
             </div>
-        </div>
+        </>
     )
 }
 

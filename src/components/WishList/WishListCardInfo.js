@@ -1,14 +1,11 @@
-import '../../styles/card.css'
-import '../../styles/style.css'
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useData } from '../../context/product-context'
 
 
-const ProductCardInfo = ({ details }) => {
+const WishListCardInfo = ({ details }) => {
 
-    const { _id, image, inStock, fastDelivery, productName } = details
-
+    const { _id, name, image, inStock, fastDelivery } = details
     const { dispatch } = useData()
     const navigate = useNavigate()
 
@@ -21,15 +18,13 @@ const ProductCardInfo = ({ details }) => {
         }
     }
 
-
     return (
-        <div>
+        <>
             <div className="product-tumb" onClick={() => selectProduct(_id)}>
-                <img src={image} alt={productName} />
+                <img src={image} alt={name} />
             </div>
 
             <div className="badge"
-                onClick={() => selectProduct(_id)}
                 style={inStock ? { backgroundColor: "#3a87ad" } : { backgroundColor: "#b94a48" }}>
                 {inStock ? <span> In Stock </span> : <span> Out of Stock </span>}
             </div>
@@ -41,8 +36,8 @@ const ProductCardInfo = ({ details }) => {
                     <span> 3 days minimum </span>
                 }
             </div>
-        </div>
+        </>
     )
 }
 
-export default ProductCardInfo
+export default WishListCardInfo

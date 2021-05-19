@@ -1,5 +1,5 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 import '../../styles/style.css'
 
 import { Link } from 'react-router-dom'
@@ -11,20 +11,24 @@ const WishListCardAction = ({ details }) => {
 
     const { _id, inStock }
         = details
+    // console.log(details)
+    const { state } = useData()
 
-    const { cart } = useProduct()
+    const presentInCart = () => {
+        return state.cartlist.find((item) => item.product._id === _id)
+    }
 
     return (
         <div className="product-links-cart">
             <DeleteFromWishlist details={details} />
             {
-                cart.find((item) => item._id === _id) ?
+                presentInCart() ?
                     <Link to="/cart" className="button-link">
                         Go To Cart
                     </Link>
                     :
                     inStock ?
-                        <AddToCart details={details} />
+                        <AddToCart details={_id} />
                         :
                         <OutOfStock />
             }

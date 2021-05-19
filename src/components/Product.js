@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import { useProduct } from '../context/product-context'
+import { useData } from '../context/product-context'
 import ProductList from './Product/ProductList';
 
 
 const Product = () => {
 
     const { productList, sortType, ShowAllProduct, ShowFastDelivery, dispatch } =
-        useProduct()
+        useData()
 
     useEffect(() => {
         (async () => {
@@ -97,7 +97,6 @@ const Product = () => {
             <div style={{ textAlign: "center" }}>
                 <button className="button-link" onClick={() => dispatch({ type: "RESET" })}>Reset</button>
             </div>
-
             <ProductList productList={filteredData} />
         </>
     )

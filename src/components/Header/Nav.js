@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 
 import './navbar.css'
 
 
 const Nav = () => {
 
-    const { cart, wishlist } = useProduct()
+    const { state } = useData()
     const [menu, setMenu] = useState(false)
     const navigate = useNavigate()
     const redirect = () => {
@@ -21,22 +21,13 @@ const Nav = () => {
             </div>
             <nav className="nav">
                 <ul id={menu ? "hidden" : ""}>
-                    <li><Link to="/" className="lnk" >Home</Link></li>
-                    <li>
-                        <Link to="/cart" className="lnk" >
-                            Cart<sup>{cart.length === 0 ? null : cart.length}</sup>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/wishlist" className="lnk" >
-                            Wishlist<sup>{wishlist.length === 0 ? null : wishlist.length}</sup>
-                        </Link>
-                    </li>
-                    {/* <li>
-                        <Link to="/login" className="lnk">
-                            Login
-                        </Link>
-                    </li> */}
+                    <Link to="/" className="lnk" ><li>Home</li></Link>
+                    <Link to="/cart" className="lnk" >
+                        <li>Cart<sup>{state.cartlist.length === 0 ? null : state.cartlist.length}</sup></li>
+                    </Link>
+                    <Link to="/wishlist" className="lnk" >
+                        <li>Wishlist<sup>{state.wishlist.length === 0 ? null : state.wishlist.length}</sup></li>
+                    </Link>
                 </ul>
             </nav>
 

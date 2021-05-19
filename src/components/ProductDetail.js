@@ -1,6 +1,7 @@
-import React from 'react'
-// import { useParams } from 'react-router'
-import { useProduct } from '../context/product-context'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router';
+// import { useData } from '../context/product-context'
 
 
 import "../styles/productdetail.css";
@@ -9,10 +10,17 @@ import ProductCardAction from './Product/ProductCardAction';
 
 const ProductDetail = () => {
 
-    const { productDetail } = useProduct()
+    const [productDetail, setProductDetail] = useState({})
 
-    const { name, image, fastDelivery, inStock, price }
-        = productDetail
+    const { name, image, fastDelivery, inStock, price } = productDetail
+    const { productId } = useParams()
+
+    useEffect(() => {
+        (async () => {
+            const res = await axios.get(`http://localhost:5000/products/${productId}`)
+            setProductDetail(res.data.productData)
+        })()
+    }, [productId])
 
     return (
         <div className="item-container">

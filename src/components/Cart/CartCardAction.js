@@ -1,5 +1,5 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 import '../../styles/style.css'
 import AddToWishlist from '../WishList/AddToWishlist'
 import DeleteFromCart from './DeleteFromCart'
@@ -11,9 +11,13 @@ import Quantity from './Quantity'
 
 const CartCardAction = ({ details }) => {
 
-    const { _id, quantity } = details
+    const { _id } = details.product
+    console.log(details)
+    const { state } = useData()
 
-    const { wishlist } = useProduct()
+    const presentInCart = () => {
+        return state.wishlist.find((item) => item.product._id === _id)
+    }
 
     return (
         <>
@@ -21,22 +25,20 @@ const CartCardAction = ({ details }) => {
             <div className="product-links-cart">
                 <div>
                     {
-                        wishlist.find((item) => item._id === _id) ?
+                        presentInCart() ?
                             ""
                             :
-                            <AddToWishlist details={details} />
+                            <AddToWishlist details={_id} />
                     }
                     <DeleteFromCart details={details} />
                 </div>
                 <div className="cart-quantity">
                     {
-                        quantity === 1 ? "" : <Decrement details={details} />
+                        details.quantity === 1 ? "" : <Decrement details={details} />
                     }
                     <Quantity details={details} />
                     <Increment details={details} />
                 </div>
-
-
             </div >
         </>
     )

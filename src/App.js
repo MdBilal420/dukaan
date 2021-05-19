@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 // import Login from "./components/Auth/Login";
 // import SignUp from "./components/Auth/SignUp";
@@ -7,10 +7,37 @@ import NavBar from "./components/Header/NavBar";
 import Product from "./components/Product";
 import ProductDetail from "./components/ProductDetail";
 import Wishlist from "./components/Wishlist";
+import axios from 'axios'
 import "./styles.css";
+import { useData } from "./context/product-context";
 
 
 export default function App() {
+
+  const { dispatch } = useData()
+
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/cart/")
+        dispatch({ type: "SET_CART", payload: response.data.cartData })
+      } catch (error) {
+        console.log("error", error)
+      }
+    })()
+  }, [dispatch])
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/wishlist/")
+        dispatch({ type: "SET_WISHLIST", payload: response.data.wishlistData })
+      } catch (error) {
+        console.log("error", error)
+      }
+    })()
+  }, [dispatch])
 
 
   return (

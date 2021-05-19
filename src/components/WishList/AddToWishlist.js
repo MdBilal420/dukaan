@@ -1,19 +1,16 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context';
+import useWishlist from '../hooks/useWishlist';
 
 const AddToWishlist = ({ details }) => {
 
-    const { _id, name, image, fastDelivery, inStock, productName, price } = details
 
-    const { dispatch } = useProduct()
+    // console.log(_id)
+    const { addToWishlist } = useWishlist()
 
     return (
         <span
             className="material-icons"
-            onClick={() => dispatch({
-                type: "ADD_TO_WISHLIST",
-                payload: { _id, name, image, inStock, fastDelivery, productName, price }
-            })} >
+            onClick={() => addToWishlist(details)} >
             favorite_border
         </span>
     )

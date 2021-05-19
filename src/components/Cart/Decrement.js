@@ -1,11 +1,11 @@
 import React from 'react'
-import { useProduct } from '../../context/product-context'
+import { useData } from '../../context/product-context'
 
 const Decrement = ({ details }) => {
 
     const { _id, name, image, fastDelivery, productName, quantity } = details
 
-    const { dispatch } = useProduct()
+    const { dispatch } = useData()
 
 
     return (
