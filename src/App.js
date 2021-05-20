@@ -20,7 +20,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:5000/cart/")
+        const response = await axios.get("https://secret-brook-26591.herokuapp.com//cart/")
         dispatch({ type: "SET_CART", payload: response.data.cartData })
       } catch (error) {
         console.log("error", error)
@@ -31,7 +31,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:5000/wishlist/")
+        const response = await axios.get("https://secret-brook-26591.herokuapp.com//wishlist/")
         dispatch({ type: "SET_WISHLIST", payload: response.data.wishlistData })
       } catch (error) {
         console.log("error", error)

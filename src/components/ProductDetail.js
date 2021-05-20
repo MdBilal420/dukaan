@@ -17,7 +17,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await axios.get(`http://localhost:5000/products/${productId}`)
+            const res = await axios.get(`https://secret-brook-26591.herokuapp.com/products/${productId}`)
             setProductDetail(res.data.productData)
         })()
     }, [productId])

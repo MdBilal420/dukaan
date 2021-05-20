@@ -33,7 +33,7 @@ export const ProductProvider = ({ children }) => {
     const addToCartAndDb = async (details) => {
 
         try {
-            const { data, status } = await axios.post(`http://localhost:5000/cart/`, {
+            const { data, status } = await axios.post(`https://secret-brook-26591.herokuapp.com/cart/`, {
                 product: { _id: details },
                 quantity: 1
             })
@@ -47,7 +47,7 @@ export const ProductProvider = ({ children }) => {
 
     const addToWishlistAndDb = async (details) => {
         try {
-            const { data, status } = await axios.post(`http://localhost:5000/wishlist/`, {
+            const { data, status } = await axios.post(`https://secret-brook-26591.herokuapp.com/wishlist/`, {
                 product: { _id: details }
             })
             if (status === 200) {
@@ -60,7 +60,7 @@ export const ProductProvider = ({ children }) => {
 
     const deleteFromCart = async (id) => {
         try {
-            const { status } = await axios.delete(`http://localhost:5000/cart/${id}`)
+            const { status } = await axios.delete(`https://secret-brook-26591.herokuapp.com/cart/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_CART", payload: id })
             }
@@ -71,7 +71,7 @@ export const ProductProvider = ({ children }) => {
 
     const deleteFromWishlist = async (id) => {
         try {
-            const { status } = await axios.delete(`http://localhost:5000/wishlist/${id}`)
+            const { status } = await axios.delete(`https://secret-brook-26591.herokuapp.com/wishlist/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_WISHLIST", payload: id })
             }
