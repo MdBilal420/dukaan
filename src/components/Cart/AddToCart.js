@@ -1,13 +1,14 @@
 import React from 'react'
-import useProduct from '../hooks/useProduct';
+import { useData } from '../../context/product-context';
+
 
 const AddToCart = ({ details }) => {
 
-    const { addToCart } = useProduct()
+    const { addToCartAndDb } = useData()
 
     return (
         <span className="button-link"
-            onClick={() => addToCart(details)}>
+            onClick={() => addToCartAndDb(details)}>
             Add To Cart
         </span>
     )

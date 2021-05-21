@@ -1,16 +1,15 @@
 import React from 'react'
-import useWishlist from '../hooks/useWishlist';
+import { useData } from '../../context/product-context';
+
 
 const AddToWishlist = ({ details }) => {
 
-
-    // console.log(_id)
-    const { addToWishlist } = useWishlist()
+    const { addToWishlistAndDb } = useData()
 
     return (
         <span
             className="material-icons"
-            onClick={() => addToWishlist(details)} >
+            onClick={() => addToWishlistAndDb(details)} >
             favorite_border
         </span>
     )
