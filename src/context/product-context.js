@@ -150,7 +150,6 @@ const reducer = (state, action) => {
         case "ADD_TO_CART":
             const found = state.cartlist.find((item) => item._id === action.payload._id)
             if (!found) {
-                console.log(action.payload)
                 return {
                     ...state,
                     cartlist: state.cartlist.concat(action.payload.cart),

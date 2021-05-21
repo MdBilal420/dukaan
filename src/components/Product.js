@@ -12,7 +12,7 @@ const Product = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get("https://secret-brook-26591.herokuapp.com/products/")
+                const response = await axios.get("http://localhost:5000/products/")
                 dispatch({ type: "SET_PRODUCTS", payload: response.data.productData })
             } catch (error) {
                 console.log("error", error)
