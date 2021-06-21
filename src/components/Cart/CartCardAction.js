@@ -11,12 +11,12 @@ import Quantity from './Quantity'
 
 const CartCardAction = ({ details }) => {
 
-    const { _id } = details.product
+    const { _id } = details
     console.log(details)
     const { state } = useData()
 
     const presentInCart = () => {
-        return state.wishlist.find((item) => item.product._id === _id)
+        return state.wishlist.find((item) => item._id === _id)
     }
 
     return (
@@ -28,7 +28,7 @@ const CartCardAction = ({ details }) => {
                         presentInCart() ?
                             ""
                             :
-                            <AddToWishlist details={_id} />
+                            <AddToWishlist details={details} />
                     }
                     <DeleteFromCart details={details} />
                 </div>

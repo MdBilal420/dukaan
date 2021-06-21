@@ -16,7 +16,7 @@ const Cart = () => {
 
     useEffect(() => {
         const getBill = () => {
-            const val = state.cartlist.reduce((acc, cur) => acc + cur.quantity * cur.product.price, 0)
+            const val = state.cartlist.reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
             setPrice(val)
         }
         getBill()

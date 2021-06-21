@@ -30,15 +30,27 @@ export const ProductProvider = ({ children }) => {
             }
         )
 
-    const addToCartAndDb = async (details) => {
 
+    const addToCartAndDb = async (details) => {
+        const { _id, name, price, image, brand, material, inStock, fastDelivery, ratings, color } = details
         try {
-            const { data, status } = await axios.post(`https://secret-brook-26591.herokuapp.com/cart/`, {
-                product: { _id: details },
-                quantity: 1
+            const { status } = await axios.post(`http://localhost:5000/cart/`, {
+                cartItems: {
+                    _id: _id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    brand: brand,
+                    material: material,
+                    inStock: inStock,
+                    fastDelivery: fastDelivery,
+                    ratings: ratings,
+                    color: color
+                }
             })
-            if (status === 200) {
-                dispatch({ type: "ADD_TO_CART", payload: data })
+
+            if (status === 201) {
+                dispatch({ type: "ADD_TO_CART", payload: { item: details } })
             }
         } catch (error) {
             console.log(error)
@@ -46,12 +58,25 @@ export const ProductProvider = ({ children }) => {
     }
 
     const addToWishlistAndDb = async (details) => {
+        const { _id, name, price, image, brand, material, inStock, fastDelivery, ratings, color } = details
+
         try {
-            const { data, status } = await axios.post(`https://secret-brook-26591.herokuapp.com/wishlist/`, {
-                product: { _id: details }
+            const { status } = await axios.post(`http://localhost:5000/wishlist/`, {
+                wishlistItems: {
+                    _id: _id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    brand: brand,
+                    material: material,
+                    inStock: inStock,
+                    fastDelivery: fastDelivery,
+                    ratings: ratings,
+                    color: color
+                }
             })
-            if (status === 200) {
-                dispatch({ type: "ADD_TO_WISHLIST", payload: data })
+            if (status === 201) {
+                dispatch({ type: "ADD_TO_WISHLIST", payload: { item: details } })
             }
         } catch (error) {
             console.log(error)
@@ -59,8 +84,9 @@ export const ProductProvider = ({ children }) => {
     }
 
     const deleteFromCart = async (id) => {
+        console.log(id)
         try {
-            const { status } = await axios.delete(`https://secret-brook-26591.herokuapp.com/cart/${id}`)
+            const { status } = await axios.delete(`http://localhost:5000/cart/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_CART", payload: id })
             }
@@ -71,7 +97,7 @@ export const ProductProvider = ({ children }) => {
 
     const deleteFromWishlist = async (id) => {
         try {
-            const { status } = await axios.delete(`https://secret-brook-26591.herokuapp.com/wishlist/${id}`)
+            const { status } = await axios.delete(`http://localhost:5000/wishlist/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_WISHLIST", payload: id })
             }
@@ -104,7 +130,6 @@ export const ProductProvider = ({ children }) => {
 const reducer = (state, action) => {
 
     switch (action.type) {
-
         case "SET_PRODUCTS":
             return {
                 ...state,
@@ -114,13 +139,13 @@ const reducer = (state, action) => {
         case "SET_CART":
             return {
                 ...state,
-                cartlist: action.payload
+                cartlist: action.payload.cartlist
             }
 
         case "SET_WISHLIST":
             return {
                 ...state,
-                wishlist: action.payload
+                wishlist: action.payload.wishlist
             }
 
         case "SELECT_PRODUCT":
@@ -148,11 +173,12 @@ const reducer = (state, action) => {
             };
 
         case "ADD_TO_CART":
+            console.log(action.payload)
             const found = state.cartlist.find((item) => item._id === action.payload._id)
             if (!found) {
                 return {
                     ...state,
-                    cartlist: state.cartlist.concat(action.payload.cart),
+                    cartlist: state.cartlist.concat(action.payload.item),
                 }
             }
             return state
@@ -172,17 +198,18 @@ const reducer = (state, action) => {
             }
 
         case "DELETE_ITEM_FROM_CART":
-
+            console.log(state.cartlist)
+            console.log(action.payload)
             return {
                 ...state,
-                cartlist: state.cartlist.filter((item) => item.product._id !== action.payload)
+                cartlist: state.cartlist.filter((item) => item._id !== action.payload)
             }
 
         case "DELETE_ITEM_FROM_WISHLIST":
 
             return {
                 ...state,
-                wishlist: state.wishlist.filter((item) => item.product._id !== action.payload)
+                wishlist: state.wishlist.filter((item) => item._id !== action.payload)
             }
 
         case "ADD_TO_WISHLIST":
@@ -190,10 +217,17 @@ const reducer = (state, action) => {
             if (!present) {
                 return {
                     ...state,
-                    wishlist: state.wishlist.concat(action.payload.wishlist)
+                    wishlist: state.wishlist.concat(action.payload.item)
                 }
             }
             return state
+
+        case "CLEAR_USER":
+            return {
+                ...state,
+                cartlist: [],
+                wishlist: []
+            }
 
         case "RESET":
             return {

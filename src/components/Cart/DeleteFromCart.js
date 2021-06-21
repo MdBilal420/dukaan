@@ -3,9 +3,9 @@ import { useData } from '../../context/product-context'
 
 const DeleteFromCart = ({ details }) => {
 
-    const { _id } = details.product
+    const { _id } = details
 
-    console.log(details.product)
+    console.log(details)
 
     const { deleteFromCart } = useData()
 

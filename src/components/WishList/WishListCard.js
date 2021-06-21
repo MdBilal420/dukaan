@@ -9,7 +9,7 @@ import WishListCardInfo from './WishListCardInfo';
 
 const WishListCard = ({ details }) => {
 
-    const { _id, name, price } = details.product
+    const { _id, name, price } = details
 
     const navigate = useNavigate()
 
@@ -17,14 +17,14 @@ const WishListCard = ({ details }) => {
 
         <div className="column">
 
-            <WishListCardInfo details={details.product} onClick={() => navigate(`/product/${_id}`)} />
+            <WishListCardInfo details={details} onClick={() => navigate(`/product/${_id}`)} />
 
             <div className="product-details">
                 <span onClick={() => navigate(`/product/${_id}`)}>
                     <h4> {name} </h4>
                     <div className="product-price">${price}</div>
                 </span>
-                <WishListCardAction details={details.product} />
+                <WishListCardAction details={details} />
             </div>
         </div>
     )

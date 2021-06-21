@@ -12,14 +12,16 @@ const ProductCardAction = ({ details }) => {
 
 
     const { _id, inStock } = details
+
     const { state } = useData()
 
+    //console.log(state)
     const presentInCart = () => {
-        return state.cartlist.find((item) => item.product._id === _id)
+        return state.cartlist.find((item) => item._id === _id)
     }
 
     const presentInWishlist = () => {
-        return state.wishlist.find((item) => item.product._id === _id)
+        return state.wishlist.find((item) => item._id === _id)
     }
 
 
@@ -29,7 +31,7 @@ const ProductCardAction = ({ details }) => {
                 presentInWishlist() ?
                     <DeleteFromWishlist details={details} />
                     :
-                    <AddToWishlist details={_id} />
+                    <AddToWishlist details={details} />
             }
 
 
@@ -37,7 +39,7 @@ const ProductCardAction = ({ details }) => {
                 Go to Cart
             </Link> :
                 inStock ?
-                    <AddToCart details={_id} /> :
+                    <AddToCart details={details} /> :
                     <OutOfStock />
             }
         </div>
