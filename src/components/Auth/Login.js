@@ -27,8 +27,8 @@ const Login = () => {
     }
     return (
         <div className="login-container">
-            {isAuth && <p>hrrrlgjh</p>}
             <h1>Login</h1>
+
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 <input type="email" name="email" placeholder="Email" value={email}

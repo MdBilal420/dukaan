@@ -32,6 +32,7 @@ export const ProductProvider = ({ children }) => {
 
 
     const addToCartAndDb = async (details) => {
+
         const { _id, name, price, image, brand, material, inStock, fastDelivery, ratings, color } = details
         try {
             const { status } = await axios.post(`http://localhost:5000/cart/`, {
@@ -45,7 +46,7 @@ export const ProductProvider = ({ children }) => {
                     inStock: inStock,
                     fastDelivery: fastDelivery,
                     ratings: ratings,
-                    color: color
+                    color: color,
                 }
             })
 
@@ -72,7 +73,7 @@ export const ProductProvider = ({ children }) => {
                     inStock: inStock,
                     fastDelivery: fastDelivery,
                     ratings: ratings,
-                    color: color
+                    color: color,
                 }
             })
             if (status === 201) {

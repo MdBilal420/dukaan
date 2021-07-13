@@ -15,7 +15,7 @@ const ProductCardAction = ({ details }) => {
 
     const { state } = useData()
 
-    //console.log(state)
+
     const presentInCart = () => {
         return state.cartlist.find((item) => item._id === _id)
     }

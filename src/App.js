@@ -21,31 +21,35 @@ if (localStorage.token) {
 
 export default function App() {
 
-  const { dispatch } = useData()
-  const { getUser } = useAuth()
+  const { state, dispatch } = useData()
+  const { isAuth, getUser } = useAuth()
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/cart/")
-        dispatch({ type: "SET_CART", payload: { cartlist: response.data[0].cartlist } })
-      } catch (error) {
-        console.log("error", error)
-      }
-    })()
-  }, [dispatch, getUser])
+    if (isAuth) {
+      (async () => {
+        try {
+          const response = await axios.get("http://localhost:5000/cart/")
+          dispatch({ type: "SET_CART", payload: { cartlist: response.data[0].cartlist } })
+        } catch (error) {
+          console.log("error", error)
+        }
+      })()
+    }
+  }, [dispatch, getUser, isAuth])
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/wishlist/")
-        console.log(response.data[0].wishlist)
-        dispatch({ type: "SET_WISHLIST", payload: { wishlist: response.data[0].wishlist } })
-      } catch (error) {
-        console.log("error", error)
-      }
-    })()
-  }, [dispatch, getUser])
+    if (isAuth) {
+      (async () => {
+        try {
+          const response = await axios.get("http://localhost:5000/wishlist/")
+          console.log(response.data[0].wishlist)
+          dispatch({ type: "SET_WISHLIST", payload: { wishlist: response.data[0].wishlist } })
+        } catch (error) {
+          console.log("error", error)
+        }
+      })()
+    }
+  }, [dispatch, getUser, isAuth])
 
   useEffect(() => {
     // eslint-disable-next-line 
@@ -58,7 +62,7 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Product />} />
-        <PrivateRoute path="/cart" element={<Cart />} />
+        <PrivateRoute path="/cart" element={<Cart cartlist={state.cartlist} />} />
         <PrivateRoute path="/wishlist" element={<Wishlist />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/register" element={<SignUp />} />

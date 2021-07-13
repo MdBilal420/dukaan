@@ -12,7 +12,7 @@ import Quantity from './Quantity'
 const CartCardAction = ({ details }) => {
 
     const { _id } = details
-    console.log(details)
+
     const { state } = useData()
 
     const presentInCart = () => {

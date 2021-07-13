@@ -12,7 +12,7 @@ const AddToWishlist = ({ details }) => {
 
     const clickHandler = () => {
         if (!isAuth) {
-            navigate("/")
+            navigate("/login")
         }
         addToWishlistAndDb(details)
     }

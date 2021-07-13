@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext/authContext';
+import "../../styles.css"
 
 const SignUp = () => {
 
-    const [user, setUser] = useState({ username: "", email: "", password: "", password2: "" })
+    const [user, setUser] = useState({ username: "tom", email: "tom@gmail.com", password: "123456", password2: "123456" })
     const { username, email, password, password2 } = user
-    const { isAuth, registerUser, getUser } = useAuth()
+    const [loading, setLoading] = useState(false)
+    const { registerUser } = useAuth()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (isAuth) {
-            getUser()
-            navigate('/')
-        }
-    }, [isAuth, getUser, navigate])
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = e => {
+        setLoading(true)
         e.preventDefault()
         if (password !== password2) {
             console.log("passwords do not match")
         }
         else {
             registerUser({ username, email, password })
+            setLoading(false)
+            navigate('/login')
         }
     }
 
     return (
         <div className="login-container">
             <h1>SIGNUP</h1>
+            {loading && <span className="loader"></span>}
             <form onSubmit={handleSubmit}>
                 <label>Username</label>
                 <input type="text" name="username" placeholder="Username" value={username}
@@ -56,6 +56,7 @@ const SignUp = () => {
 
                 <button type="submit" value="Submit">Submit</button>
             </form>
+
             <p>Already have an account ? <Link to="/login" className="lnk" >LOGIN</Link></p>
         </div>
     )

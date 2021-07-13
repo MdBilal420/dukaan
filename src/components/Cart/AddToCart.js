@@ -14,6 +14,9 @@ const AddToCart = ({ details }) => {
         if (!isAuth) {
             navigate("/login")
         }
+
+        details.quantity = 1
+
         addToCartAndDb(details)
     }
 

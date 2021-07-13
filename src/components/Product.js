@@ -95,7 +95,7 @@ const Product = () => {
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>
-                <button className="button-link" onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+                <span className="button-link" onClick={() => dispatch({ type: "RESET" })}>Reset</span>
             </div>
             <ProductList productList={filteredData} />
         </>

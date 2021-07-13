@@ -5,8 +5,6 @@ const DeleteFromCart = ({ details }) => {
 
     const { _id } = details
 
-    console.log(details)
-
     const { deleteFromCart } = useData()
 
     return (

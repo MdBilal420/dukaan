@@ -38,12 +38,18 @@ const Nav = () => {
                     {!isAuth
                         ?
                         <Link to="/login" className="lnk" >
-                            <li style={{ border: "1px solid black", padding: "0.5rem" }}>LOGIN</li>
+                            <li style={{ border: "1px solid black", padding: "0.5rem" }}>LOGIN / SIGNUP</li>
                         </Link>
-                        :
-                        <button onClick={handleLogout}>LOGOUT</button>
+                        : <>
+                            <div className="dropdown">
+                                <button className="dropbtn">{user && <span>{user.username.toUpperCase()}</span>}</button>
+                                <div className="dropdown-content">
+                                    <button onClick={handleLogout}>LOGOUT</button>
+                                </div>
+                            </div>
+                        </>
                     }
-                    {user && <span>{user.username}</span>}
+
                 </ul>
             </nav>
 

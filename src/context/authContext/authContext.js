@@ -40,8 +40,7 @@ export const AuthProvier = ({ children }) => {
             }
         }
         try {
-            const response = await axios.post(`http://localhost:5000/signup/`, userInfo, config)
-            authDispatch({ type: "SUCCESS_SIGNUP", payload: response.data })
+            await axios.post(`http://localhost:5000/signup/`, userInfo, config)
         } catch (error) {
             authDispatch({ type: "FAILED_SIGNUP", payload: error.response.data })
         }
