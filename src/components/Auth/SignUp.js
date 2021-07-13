@@ -5,7 +5,7 @@ import "../../styles.css"
 
 const SignUp = () => {
 
-    const [user, setUser] = useState({ username: "tom", email: "tom@gmail.com", password: "123456", password2: "123456" })
+    const [user, setUser] = useState({ username: "", email: "", password: "", password2: "" })
     const { username, email, password, password2 } = user
     const [loading, setLoading] = useState(false)
     const { registerUser } = useAuth()
