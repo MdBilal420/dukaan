@@ -12,7 +12,7 @@ const Product = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get("http://localhost:5000/products/")
+                const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/products/")
                 dispatch({ type: "SET_PRODUCTS", payload: response.data.productData })
             } catch (error) {
                 console.log("error", error)

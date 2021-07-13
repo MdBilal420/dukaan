@@ -28,7 +28,7 @@ export default function App() {
     if (isAuth) {
       (async () => {
         try {
-          const response = await axios.get("http://localhost:5000/cart/")
+          const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/cart/")
           dispatch({ type: "SET_CART", payload: { cartlist: response.data[0].cartlist } })
         } catch (error) {
           console.log("error", error)
@@ -41,7 +41,7 @@ export default function App() {
     if (isAuth) {
       (async () => {
         try {
-          const response = await axios.get("http://localhost:5000/wishlist/")
+          const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/wishlist/")
           console.log(response.data[0].wishlist)
           dispatch({ type: "SET_WISHLIST", payload: { wishlist: response.data[0].wishlist } })
         } catch (error) {

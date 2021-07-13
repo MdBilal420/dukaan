@@ -35,7 +35,7 @@ export const ProductProvider = ({ children }) => {
 
         const { _id, name, price, image, brand, material, inStock, fastDelivery, ratings, color } = details
         try {
-            const { status } = await axios.post(`http://localhost:5000/cart/`, {
+            const { status } = await axios.post(`https://dukaan-backend.mdbilal420.repl.co/cart/`, {
                 cartItems: {
                     _id: _id,
                     name: name,
@@ -62,7 +62,7 @@ export const ProductProvider = ({ children }) => {
         const { _id, name, price, image, brand, material, inStock, fastDelivery, ratings, color } = details
 
         try {
-            const { status } = await axios.post(`http://localhost:5000/wishlist/`, {
+            const { status } = await axios.post(`https://dukaan-backend.mdbilal420.repl.co/wishlist/`, {
                 wishlistItems: {
                     _id: _id,
                     name: name,
@@ -87,7 +87,7 @@ export const ProductProvider = ({ children }) => {
     const deleteFromCart = async (id) => {
         console.log(id)
         try {
-            const { status } = await axios.delete(`http://localhost:5000/cart/${id}`)
+            const { status } = await axios.delete(`https://dukaan-backend.mdbilal420.repl.co/cart/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_CART", payload: id })
             }
@@ -98,7 +98,7 @@ export const ProductProvider = ({ children }) => {
 
     const deleteFromWishlist = async (id) => {
         try {
-            const { status } = await axios.delete(`http://localhost:5000/wishlist/${id}`)
+            const { status } = await axios.delete(`https://dukaan-backend.mdbilal420.repl.co/wishlist/${id}`)
             if (status === 200) {
                 dispatch({ type: "DELETE_ITEM_FROM_WISHLIST", payload: id })
             }

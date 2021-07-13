@@ -23,7 +23,7 @@ export const AuthProvier = ({ children }) => {
             setToken(localStorage.token)
         }
         try {
-            const res = await axios.get(`http://localhost:5000/login/`)
+            const res = await axios.get(`https://dukaan-backend.mdbilal420.repl.co/login/`)
             authDispatch({
                 type: "SET_USER",
                 payload: res.data
@@ -40,7 +40,7 @@ export const AuthProvier = ({ children }) => {
             }
         }
         try {
-            await axios.post(`http://localhost:5000/signup/`, userInfo, config)
+            await axios.post(`https://dukaan-backend.mdbilal420.repl.co/signup/`, userInfo, config)
         } catch (error) {
             authDispatch({ type: "FAILED_SIGNUP", payload: error.response.data })
         }
@@ -53,7 +53,7 @@ export const AuthProvier = ({ children }) => {
             }
         }
         try {
-            const response = await axios.post(`http://localhost:5000/login/`, userInfo, config)
+            const response = await axios.post(`https://dukaan-backend.mdbilal420.repl.co/login/`, userInfo, config)
             console.log(response.data)
             authDispatch({ type: "SUCCESS_LOGIN", payload: response.data })
         } catch (error) {

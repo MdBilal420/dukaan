@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await axios.get(`https://secret-brook-26591.herokuapp.com/products/${productId}`)
+            const res = await axios.get(`https://dukaan-backend.mdbilal420.repl.co/products/${productId}`)
             setProductDetail(res.data.productData)
             setLoading(false)
         })()
