@@ -10,7 +10,7 @@ const CartCardInfo = ({ details }) => {
 
     const { dispatch } = useData()
     const navigate = useNavigate()
-    console.log(details)
+
 
     const selectProduct = (id) => {
         if (id) {

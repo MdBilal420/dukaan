@@ -14,28 +14,31 @@ const ProductDetail = () => {
 
     const { name, image, fastDelivery, inStock, price } = productDetail
     const { productId } = useParams()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         (async () => {
-            const res = await axios.get(`https://secret-brook-26591.herokuapp.com/products/${productId}`)
+            const res = await axios.get(`https://dukaan-backend.mdbilal420.repl.co/products/${productId}`)
             setProductDetail(res.data.productData)
+            setLoading(false)
         })()
     }, [productId])
 
     return (
         <div className="item-container">
-            <div className="product-view">
-                <img src={image} alt="" />
-            </div>
-            <div className="product-info">
-                <h3>{name}</h3>
-                <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
-                    {inStock && <span className="product-stock">inStock</span>}
-                    {fastDelivery && <span className="product-delivery">Fast Delivery</span>}
+            {loading ? <h3>Loading...</h3> : <>
+                <div className="product-view">
+                    <img src={image} alt="" />
                 </div>
-                <h4>Price: ${price}</h4>
-                <ProductCardAction details={productDetail} />
-            </div>
+                <div className="product-info">
+                    <h3>{name}</h3>
+                    <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+                        {inStock && <span className="product-stock">inStock</span>}
+                        {fastDelivery && <span className="product-delivery">Fast Delivery</span>}
+                    </div>
+                    <h4>Price: ${price}</h4>
+                    <ProductCardAction details={productDetail} />
+                </div> </>}
         </div>
 
     )

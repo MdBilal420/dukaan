@@ -12,7 +12,7 @@ const Product = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get("http://localhost:5000/products/")
+                const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/products/")
                 dispatch({ type: "SET_PRODUCTS", payload: response.data.productData })
             } catch (error) {
                 console.log("error", error)
@@ -95,7 +95,7 @@ const Product = () => {
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>
-                <button className="button-link" onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+                <span className="button-link" onClick={() => dispatch({ type: "RESET" })}>Reset</span>
             </div>
             <ProductList productList={filteredData} />
         </>

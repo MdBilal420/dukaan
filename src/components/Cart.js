@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useData } from '../context/product-context'
 import '../styles/style.css'
 import CartCard from './Cart/CartCard'
@@ -11,16 +11,14 @@ const emptyStyle = {
 const Cart = () => {
 
     const { state } = useData()
-    const [price, setPrice] = useState(0)
+
     console.log(state.cartlist)
 
-    useEffect(() => {
-        const getBill = () => {
-            const val = state.cartlist.reduce((acc, cur) => acc + cur.quantity * cur.product.price, 0)
-            setPrice(val)
-        }
-        getBill()
-    })
+
+    const getBill = () => {
+        const val = state.cartlist.reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
+        return val
+    }
 
 
     return (
@@ -29,7 +27,7 @@ const Cart = () => {
             {
                 state.cartlist.length > 0 &&
                 <fieldset style={{ textAlign: 'center' }}>
-                    <h3>Total Amount : {price}</h3>
+                    <h3>Total Amount : {getBill()}</h3>
                 </fieldset>
             }
 

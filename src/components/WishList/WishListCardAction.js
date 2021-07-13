@@ -15,7 +15,7 @@ const WishListCardAction = ({ details }) => {
     const { state } = useData()
 
     const presentInCart = () => {
-        return state.cartlist.find((item) => item.product._id === _id)
+        return state.cartlist.find((item) => item._id === _id)
     }
 
     return (
@@ -28,7 +28,7 @@ const WishListCardAction = ({ details }) => {
                     </Link>
                     :
                     inStock ?
-                        <AddToCart details={_id} />
+                        <AddToCart details={details} />
                         :
                         <OutOfStock />
             }

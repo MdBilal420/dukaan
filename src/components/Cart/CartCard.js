@@ -7,7 +7,7 @@ import CartCardInfo from './CartCardInfo'
 
 const CartCard = ({ details }) => {
 
-    const { _id, name, price, } = details.product
+    const { _id, name, price, } = details
     console.log(_id)
 
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ const CartCard = ({ details }) => {
     return (
         <div className="column">
 
-            <CartCardInfo details={details.product} onClick={() => navigate(`/product/${_id}`)} />
+            <CartCardInfo details={details} onClick={() => navigate(`/product/${_id}`)} />
 
             <div className="product-details">
                 <span onClick={() => navigate(`/product/${_id}`)}>
