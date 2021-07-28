@@ -18,11 +18,18 @@ Backend source code (Express & Mongoose): [https://github.com/MdBilal420/dukaan-
 9. React: useContext, useReducer, useEffect, useState, custom hooks, functional components
 
 -----
-### Libraries used: 
-- **React.js** 
-- **React router**
-- **Axios**
-- **Messy (personal CSS library)**: v1.0.0
+
+## Tech stack
+- Frontend
+  + React
+  + React Router
+  + React Context API
+  + **Messy (personal CSS library)**: v1.0.0
+- Backend
+  + Express
+  + Mongoose
+  + MongoDB
+
 
 Icons: Google [font icons](https://fonts.google.com/icons)       
 Bootstrapped with `create-react-app`
