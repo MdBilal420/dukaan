@@ -2,7 +2,7 @@
 import React from 'react'
 import { useData } from '../context/product-context'
 import '../styles/style.css'
-import WishListCard from './WishList/WishListCard'
+import WishListCard from '../components/WishList/WishListCard'
 
 
 const emptyStyle = {

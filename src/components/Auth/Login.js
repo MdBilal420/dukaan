@@ -4,7 +4,7 @@ import { useAuth } from '../../context/authContext/authContext';
 import "./login.css"
 
 const Login = () => {
-    const [user, setUser] = useState({ email: "", password: "" })
+    const [user, setUser] = useState({ email: "tom@gmail.com", password: "123456" })
     const { email, password } = user
     const { isAuth, loginUser, getUser } = useAuth()
     const navigate = useNavigate()
