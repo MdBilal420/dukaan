@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { useData } from '../context/product-context'
-import ProductList from './Product/ProductList';
+import ProductList from '../components/Product/ProductList';
 
 
 const Product = () => {
@@ -9,16 +8,7 @@ const Product = () => {
     const { productList, sortType, ShowAllProduct, ShowFastDelivery, dispatch } =
         useData()
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/products/")
-                dispatch({ type: "SET_PRODUCTS", payload: response.data.productData })
-            } catch (error) {
-                console.log("error", error)
-            }
-        })()
-    }, [dispatch])
+
 
 
     const getSortedData = (productData, sortType) => {

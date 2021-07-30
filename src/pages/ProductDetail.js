@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
-// import { useData } from '../context/product-context'
 
 
 import "../styles/productdetail.css";
-import ProductCardAction from './Product/ProductCardAction';
+import ProductCardAction from '../components/Product/ProductCardAction';
 
 
 const ProductDetail = () => {

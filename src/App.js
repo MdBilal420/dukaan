@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
-import Cart from "./components/Cart";
+import Cart from "./pages/Cart";
 import NavBar from "./components/Header/NavBar";
-import Product from "./components/Product";
-import ProductDetail from "./components/ProductDetail";
-import Wishlist from "./components/Wishlist";
+import Product from "./pages/Product";
+import ProductDetail from "./pages/ProductDetail";
+import Wishlist from "./pages/Wishlist"
 import axios from 'axios'
 import "./styles.css";
 import { useData } from "./context/product-context";
@@ -50,6 +50,17 @@ export default function App() {
       })()
     }
   }, [dispatch, getUser, isAuth])
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("https://dukaan-backend.mdbilal420.repl.co/products/")
+        dispatch({ type: "SET_PRODUCTS", payload: response.data.productData })
+      } catch (error) {
+        console.log("error", error)
+      }
+    })()
+  }, [dispatch])
 
   useEffect(() => {
     // eslint-disable-next-line 

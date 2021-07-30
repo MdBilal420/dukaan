@@ -1,7 +1,7 @@
 import React from 'react'
 import { useData } from '../context/product-context'
 import '../styles/style.css'
-import CartCard from './Cart/CartCard'
+import CartCard from '../components/Cart/CartCard'
 
 const emptyStyle = {
     textAlign: "center",
