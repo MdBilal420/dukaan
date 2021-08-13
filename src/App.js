@@ -60,7 +60,7 @@ export default function App() {
         console.log("error", error)
       }
     })()
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     // eslint-disable-next-line 
